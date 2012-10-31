@@ -1,5 +1,14 @@
 /// <reference path="../../easeljs-0.5.0.d.ts" />
 
+interface MyBitmapAnimation extends createjs.BitmapAnimation
+    {
+    speed: number;
+    direction: number;
+    vX: number;
+    vY: number;
+    }
+
+
 window.onload = function()
 {
 init();
@@ -57,8 +66,9 @@ function handleImageLoad(event: MouseEvent) {
 	*/
 
 	// create a BitmapAnimation instance to display and play back the sprite sheet:
-	var bmpAnim = new createjs.BitmapAnimation(spriteSheet);
-
+	var bmpAnim = <MyBitmapAnimation> new createjs.BitmapAnimation(spriteSheet);
+    
+    
 	// start playing the first sequence:
 	bmpAnim.gotoAndPlay("walkRt");		//animate
 
@@ -84,7 +94,7 @@ function handleImageLoad(event: MouseEvent) {
 
 		// rather than creating a brand new instance each time, and setting every property, we
 		// can just clone the current one and overwrite the properties we want to change:
-		if (i < l-1) { bmpAnim = bmpAnim.clone(); }
+		if (i < l-1) { bmpAnim = <MyBitmapAnimation> bmpAnim.clone(); }
 	}
 
 	// we want to do some work before we update the canvas,
@@ -110,7 +120,7 @@ function tick() {
 	stage.update();
 }
 
-function angleChange( bmpAnim: createjs.BitmapAnimation, animation: string ) {
+function angleChange( bmpAnim: MyBitmapAnimation, animation: string ) {
 	//after each sequence ends update the rat's heading and adjust velocities to match
 	bmpAnim.direction -= 60;
 	var angle = bmpAnim.direction * (Math.PI/180);

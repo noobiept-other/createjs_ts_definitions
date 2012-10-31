@@ -381,7 +381,7 @@ export class Matrix2D
     }
 
     
-export class MouseEvent //HERE different type, nativeEvent... 
+export class MouseEvent 
     {
     constructor( type: string, stageX: number, stageY: number, target: DisplayObject, nativeEvent: NativeMouseEvent, pointerID: number, primary: bool, rawX: number, rawY: number );
     
