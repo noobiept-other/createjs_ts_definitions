@@ -548,6 +548,7 @@ export class SpriteSheetBuilder
 
 export class SpriteSheetUtils
     {
+    static addFlippedFrames(spriteSheet: SpriteSheet, horizontal?: bool, vertical?: bool, both?: bool ): void;
     static extractFrame( spriteSheet: Image, frame: number ): Image;   //HERE
     static flip( spriteSheet: Image, flipData: Object ): void;
     static mergeAlpha( rgbImage: Image, alphaImage: Image, canvas?: HTMLCanvasElement ): HTMLCanvasElement;
