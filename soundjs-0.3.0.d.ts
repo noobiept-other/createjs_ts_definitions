@@ -72,7 +72,7 @@ export class SoundJS
     static INTERRUPT_EARLY: string;
     static INTERRUPT_LATE: string;
     static INTERRUPT_NONE: string;
-    muted: bool;
+    static muted: bool;
     static PLAY_FAILED: string;
     static PLAY_FINISHED: string;
     static PLAY_INITED: string;
@@ -80,7 +80,7 @@ export class SoundJS
     static PLAY_SUCCEEDED: string;
 
         // methods
-    checkPlugin( initializeDefault: bool ): bool;
+    static checkPlugin( initializeDefault: bool ): bool;
     static getCapabilities(): Object;
     static getCapability( key: string );    //HERE can return string | number | bool
     static getInstanceById( uniqueId: string ): SoundInstance;
@@ -88,13 +88,13 @@ export class SoundJS
     static getSrcFromId( value: string ): string;
     static isReady(): bool;
     static pause( id: string ): void;
-    static play( value: string, interrupt: string, delay: number, offset: number, loop: number, volume: number, pan: number ): SoundInstance;
+    static play( value: string, interrupt?: string, delay?: number, offset?: number, loop?: number, volume?: number, pan?: number ): SoundInstance;
     static registerPlugin( plugin: Object ): bool;
     static registerPlugins( plugins: Object[] ): bool;
     static resume( id: string ): void;
     static setMasterVolume( value: number ): bool;
     static setMute( isMuted: bool, id: string ): bool;
     static setVolume( value: number, id?: string ): bool;
-    static stop( id: string );
+    static stop( id?: string ): bool;
     }
 }

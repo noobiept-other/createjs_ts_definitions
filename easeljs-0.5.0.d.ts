@@ -5,6 +5,8 @@ interface NativeMouseEvent extends MouseEvent
     }
 
 
+/// <reference path="tweenjs-0.3.0.d.ts" />
+
 
 module createjs
 { 
@@ -121,7 +123,6 @@ export class Bitmap extends DisplayObject
     sourceRect: Rectangle;
 
         // methods
-    cache(): void;
     clone(): Bitmap;
     draw( ctx: CanvasRenderingContext2D, ignoreCache: bool ): void;
     isVisible(): bool;
@@ -182,7 +183,7 @@ export class BoxBlurFilter extends Filter
 
 export class ColorFilter extends Filter
     {
-    constructor( redMultiplier: number, greenMultiplier: number, blueMultiplier: number, alphaMultiplier: number, redOffset: number, greenOffset: number, blueOffset: number, alphaOffset: number );
+    constructor( redMultiplier?: number, greenMultiplier?: number, blueMultiplier?: number, alphaMultiplier?: number, redOffset?: number, greenOffset?: number, blueOffset?: number, alphaOffset?: number );
 
         // properties
     alphaOffset: number;
@@ -251,7 +252,7 @@ export class Container extends DisplayObject
         // methods
     addChild( ...child: DisplayObject[] ): DisplayObject;
     addChildAt( ...child: DisplayObject[], index: number ): DisplayObject;  //HERE typescript doesnt like having an argument after the variable length argument
-    clone( recursive: bool ): Container;
+    clone( recursive?: bool ): Container;
     contains( child: DisplayObject ): bool;
     draw( ctx: CanvasRenderingContext2D, ignoreCache: bool ): void;
     getChildAt( index: number ): DisplayObject;
@@ -483,6 +484,8 @@ export class Shadow
 
 export class Shape extends DisplayObject
     {
+    constructor( graphics?: Graphics );
+
         // properties
     graphics: Graphics;
 
@@ -494,6 +497,15 @@ export class Shape extends DisplayObject
     }
 
 
+    // what is returned from .getAnimation()
+interface SpriteSheetAnimation
+    {
+    frames: number[];
+    frequency: number;
+    name: string;
+    next: string;
+    }
+
 export class SpriteSheet
     {
     constructor( data: Object );
@@ -503,7 +515,7 @@ export class SpriteSheet
 
         // methods
     clone(): SpriteSheet;
-    getAnimation( name: string ): Object;
+    getAnimation( name: string ): SpriteSheetAnimation;
     getAnimations(): string[];
     getFrame( frameIndex: number ): Object;
     getNumFrames( animation: string ): number;

@@ -24,7 +24,7 @@ export class AbstractLoader
 
 export class PreloadJS extends AbstractLoader
     {
-    constructor( useXHR2: bool );
+    constructor( useXHR2?: bool );
 
         // properties
     static CSS: string;
