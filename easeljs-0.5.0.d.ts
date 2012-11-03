@@ -95,11 +95,11 @@ export class Filter
 
 export class AlphaMapFilter extends Filter
     {
-    constructor( alphaMap: Image );    //HERE doesn't recognize Image type
+    constructor( alphaMap: HTMLImageElement );
     constructor( alphaMap: HTMLCanvasElement );
 
         // properties
-    alphaMap: Image;    //HERE can be also an HTMLCanvasElement.. can't overload properties
+    alphaMap: any;    // HTMLImageElement or HTMLCanvasElement --  can't overload properties
 
         // methods
     applyFilter( ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, targetCtx?: CanvasRenderingContext2D, targetX?: number, targetY?: number ): bool;
@@ -110,11 +110,11 @@ export class AlphaMapFilter extends Filter
 
 export class AlphaMaskFilter extends Filter
     {
-    constructor( mask: Image );
+    constructor( mask: HTMLImageElement );
     constructor( mask: HTMLCanvasElement );
 
         // properties
-    mask: Image;    //HERE or HTMLCanvasElement
+    mask: any;    // HTMLImageElement or HTMLCanvasElement
 
         // methods
     applyFilter( ctx: CanvasRenderingContext2D, x: number, y: number, width: number, height: number, targetCtx?: CanvasRenderingContext2D, targetX?: number, targetY?: number ): bool;
@@ -125,13 +125,13 @@ export class AlphaMaskFilter extends Filter
 
 export class Bitmap extends DisplayObject
     {
-    constructor( imageOrUrl: Image );
+    constructor( imageOrUrl: HTMLImageElement );
     constructor( imageOrUrl: HTMLCanvasElement );
     constructor( imageOrUrl: HTMLVideoElement );
     constructor( imageOrUrl: string );
 
         // properties
-    image;  //HERE how to tell the various type possibilities?
+    image: any;  // HTMLImageElement or HTMLCanvasElement or HTMLVideoElement
     snapToPixel: bool;
     sourceRect: Rectangle;
 
@@ -264,7 +264,9 @@ export class Container extends DisplayObject
 
         // methods
     addChild( ...child: DisplayObject[] ): DisplayObject;
-    addChildAt( ...child: DisplayObject[], index: number ): DisplayObject;  //HERE typescript doesnt like having an argument after the variable length argument
+    //addChildAt( ...child: DisplayObject[], index: number ): DisplayObject;  //HERE typescript doesnt like having an argument after the variable length argument
+    addChildAt( ...child:any[] ): DisplayObject;
+
     clone( recursive?: bool ): Container;
     contains( child: DisplayObject ): bool;
     draw( ctx: CanvasRenderingContext2D, ignoreCache: bool ): void;
@@ -549,7 +551,7 @@ export class SpriteSheetBuilder
     spriteSheet: SpriteSheet;
 
         // methods
-    addFrame( source: DisplayObject, sourceRect?: Rectangle, scale?: number, setupFunction?: () => any, setupParams?: any[], setupScope?: Object ): number; //HERE returns number or null
+    addFrame( source: DisplayObject, sourceRect?: Rectangle, scale?: number, setupFunction?: () => any, setupParams?: any[], setupScope?: Object ): any; //HERE returns number or null
     addMovieClip( source: MovieClip, sourceRect?: Rectangle, scale?: number ): void;
     build(): void;
     buildAsync( callback?: ( reference: SpriteSheetBuilder ) => any, timeSlice?: number ): void;
@@ -562,9 +564,9 @@ export class SpriteSheetBuilder
 export class SpriteSheetUtils
     {
     static addFlippedFrames(spriteSheet: SpriteSheet, horizontal?: bool, vertical?: bool, both?: bool ): void;
-    static extractFrame( spriteSheet: Image, frame: number ): Image;   //HERE
-    static flip( spriteSheet: Image, flipData: Object ): void;
-    static mergeAlpha( rgbImage: Image, alphaImage: Image, canvas?: HTMLCanvasElement ): HTMLCanvasElement;
+    static extractFrame( spriteSheet: HTMLImageElement, frame: number ): HTMLImageElement;
+    static flip( spriteSheet: HTMLImageElement, flipData: Object ): void;
+    static mergeAlpha( rgbImage: HTMLImageElement, alphaImage: HTMLImageElement, canvas?: HTMLCanvasElement ): HTMLCanvasElement;
     }
 
 

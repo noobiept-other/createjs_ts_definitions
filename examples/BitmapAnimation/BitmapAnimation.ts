@@ -40,7 +40,7 @@ function handleImageLoad(event: MouseEvent) {
 	var h = canvas.height;
 
 	// create spritesheet and assign the associated data.
-	var spriteSheet  = new createjs.SpriteSheet({
+	var spriteSheet = new createjs.SpriteSheet({
 		images: [img],
 		frames: {width:64, height:68, regX:32, regY:34},
 		animations: {
@@ -50,6 +50,7 @@ function handleImageLoad(event: MouseEvent) {
 		}
 	});
 
+	
 	// to save file size, the loaded sprite sheet only includes right facing animations
 	// we could flip the display objects with scaleX=-1, but this is expensive in some browsers
 	// instead, we append flipped versions of the frames to our sprite sheet
